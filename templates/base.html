@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Cookbook</title>
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Materialize - Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+     <!-- CSS -->
+     <link rel="stylesheet" href="../static/css/styles.css"/>
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="teal darken-1">
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo">MyCookbook</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="\">Home</a></li>
+                    <li><a href="\recipes">Recipes</a></li>
+                    <li><a href="\login">Login</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Mobile sidebar -->
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="\">Home</a></li>
+            <li><a href="\recipes">Recipes</a></li>
+            <li><a href="\login">Login</a></li>
+        </ul>
+    </header>
+    
+    
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="row">
+                
+                {% block content %}
+                {% endblock %}
+                
+            </div>
+        </div>
+    </main>
+
+    
+    <footer>
+        <!--footer content-->
+    </footer>
+    
+    <!-- Materialize - Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="static/js/script.js"></script>
+</body>
+</html>

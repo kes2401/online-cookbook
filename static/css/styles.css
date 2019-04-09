@@ -1,0 +1,18 @@
+.main {
+    display: block;
+    padding-top: 64px;
+    height: calc(100vh - 64px);
+    background-image: url("../../assets/img/lukas-blazek-1600.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+/* Media Queries */
+@media screen and (min-width: 993px) {
+    
+    nav .brand-logo {
+        margin-left: 60px;
+    }
+}
+
