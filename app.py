@@ -14,13 +14,9 @@ db = client.cookbook
 
 
 @app.route('/')
+@app.route('/login', methods=['GET', 'POST'])
 def home():
-    data = db.allergens.find()
-    result = '<ul>'
-    for record in data:
-        result = result + '<li>' + record['allergen_name'] + '</li>'
-    result = result + '</ul>'
-    return result
+    return render_template('login.html')
 
 
 # run application

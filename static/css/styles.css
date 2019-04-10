@@ -5,8 +5,17 @@
     background-image: url('../assets/img/lukas-blazek-1600.jpg');
     background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
 }
 
+#login-form {
+    border-radius: 4px;
+    padding: 40px;
+}
+
+p {
+    font-size: 1.2rem;
+}
 
 /* Media Queries */
 @media screen and (min-width: 993px) {

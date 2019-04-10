@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <header class="header-text center-align teal-text text-darken-4">
+        <h1>Welcome to The Open Cookbook</h1>
+        <p><strong>Click the Browse button above to browse recipes or log in below to access full site features</strong></p>
+        <p></p>
+    </header>
+    <div class="container col s10 m6 offset-s1 offset-m3 grey lighten-5" id="login-form">
+        <div class="row">
+            <form action="/recipes" method="POST">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix teal-text text-darken-1">account_circle</i>
+                    <input id="username" type="text" class="validate" autocomplete="false">
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix teal-text text-darken-1">lock_open</i>
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}
