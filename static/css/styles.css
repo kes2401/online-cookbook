@@ -2,7 +2,7 @@
     display: block;
     padding-top: 64px;
     height: calc(100vh - 64px);
-    background-image: url("../../assets/img/lukas-blazek-1600.jpg");
+    background-image: url('../assets/img/lukas-blazek-1600.jpg');
     background-repeat: no-repeat;
     background-position: center;
 }

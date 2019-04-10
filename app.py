@@ -1,27 +1,26 @@
 import os
-from flask import Flask, render_template
-from flask_pymongo import PyMongo
+from flask import Flask, render_template, url_for
+from flask_pymongo import PyMongo, pymongo
 
 app = Flask(__name__)
 
 app.config["MONGO_DBNAME"] = "cookbook"
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 
-mongo = PyMongo(app)
+# mongo = PyMongo(app) ----REMOVE???
 
-# Seed data for initial dev purposes prior to DB connection
-data = {
-    'allergens': ['milk', 'eggs', 'soy'],
-    'cuisines': ['american', 'british', 'chinese', 'italian'],
-    'users': ['testuser'],
-    'recipies': [],
-    'ingredients': ['flour', 'eggs', 'butter', 'sugar', 'tomato', 'cheese']
-}
+client = pymongo.MongoClient(os.getenv('MONGO_URI'))
+db = client.cookbook
 
 
 @app.route('/')
-def index():
-    return render_template('base.html')
+def home():
+    data = db.allergens.find()
+    result = '<ul>'
+    for record in data:
+        result = result + '<li>' + record['allergen_name'] + '</li>'
+    result = result + '</ul>'
+    return result
 
 
 # run application
