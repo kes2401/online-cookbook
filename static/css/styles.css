@@ -1,21 +1,39 @@
 .main {
     display: block;
+    box-sizing: border-box;
     padding-top: 64px;
-    height: calc(100vh - 64px);
+    height: 100vh;
     background-image: url('../assets/img/lukas-blazek-1600.jpg');
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
 }
 
 #login-form {
-    border-radius: 4px;
-    padding: 40px;
+    border-radius: 8px;
+    padding: 30px;
 }
 
-p {
+.submit-btn {
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* Utility classes*/
+.lrg-paragraph-txt {
     font-size: 1.2rem;
 }
+
+.sml-paragraph-txt {
+    font-size: 0.9rem;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
 
 /* Media Queries */
 @media screen and (min-width: 993px) {
