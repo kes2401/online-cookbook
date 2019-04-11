@@ -1,8 +1,13 @@
-.main {
-    display: block;
-    box-sizing: border-box;
-    padding-top: 64px;
-    height: 100vh;
+nav {
+    position: fixed;
+    z-index: 9999;
+}
+
+h1 {
+    font-size: 3.4rem;
+}
+
+body {
     background-image: url('../assets/img/lukas-blazek-1600.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -10,15 +15,32 @@
     background-attachment: fixed;
 }
 
+.main {
+    display: block;
+    box-sizing: border-box;
+    padding-top: 64px;
+    height: 100vh;
+}
+
 #login-form {
-    border-radius: 8px;
     padding: 30px;
+}
+
+.content-container {
+    border-radius: 8px;
 }
 
 .submit-btn {
     display: block;
     margin: 0 auto;
 }
+
+#recipe-search {
+    /*box-sizing: border-box;*/
+    padding: 14px;
+}
+
+
 
 
 /* Utility classes*/
@@ -33,7 +55,13 @@
 .mt-20 {
     margin-top: 20px;
 }
+.mt-30 {
+    margin-top: 30px;
+}
 
+.p-10 {
+    padding: 10px;
+}
 
 /* Media Queries */
 @media screen and (min-width: 993px) {

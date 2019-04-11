@@ -25,6 +25,10 @@ def signup():
 @app.route('/recipes')
 def recipes():
     return render_template('recipes.html')
+    
+@app.route('/recipe')
+def recipe():
+    return render_template('recipe.html')
 
 
 # run application
