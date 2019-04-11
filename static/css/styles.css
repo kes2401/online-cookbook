@@ -3,6 +3,10 @@ nav {
     z-index: 9000;
 }
 
+nav .brand-logo {
+    font-size: 1.4rem;
+}
+
 .sidenav {
     z-index: 9999;
 }
@@ -73,6 +77,8 @@ body {
     
     nav .brand-logo {
         margin-left: 60px;
+        font-size: 2rem;
     }
+    
 }
 
