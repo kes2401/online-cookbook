@@ -19,7 +19,6 @@ body {
     display: block;
     box-sizing: border-box;
     padding-top: 64px;
-    height: 100vh;
 }
 
 #login-form {
@@ -40,7 +39,9 @@ body {
     padding: 14px;
 }
 
-
+.fab {
+    font-size: 1.6rem;
+}
 
 
 /* Utility classes*/
@@ -55,8 +56,8 @@ body {
 .mt-20 {
     margin-top: 20px;
 }
-.mt-30 {
-    margin-top: 30px;
+.mt-40 {
+    margin-top: 40px;
 }
 
 .p-10 {

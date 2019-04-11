@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Materialize - Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
     <!-- Favicon -->
@@ -50,8 +52,28 @@
     </main>
 
     
-    <footer>
-        <!--footer content-->
+    <footer class="page-footer mt-40 teal">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h6 class="white-text">The Open Cookbook</h6>
+                    <p class="grey-text text-lighten-4">A collaborative cookbook where you can read and create recipes for the community</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h6 class="white-text">Links</h6>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" href="\">Home</a></li>
+                        <li><a class="grey-text text-lighten-3" href="\recipes">Recipes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2019 Keith Scully
+                <a class="grey-text text-lighten-4 right" href="https://github.com/kes2401/online-cookbook" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
     </footer>
     
     <!-- Materialize - Compiled and minified JavaScript -->
