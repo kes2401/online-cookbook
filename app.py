@@ -17,6 +17,14 @@ db = client.cookbook
 @app.route('/login', methods=['GET', 'POST'])
 def home():
     return render_template('login.html')
+    
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    return render_template('signup.html')
+
+@app.route('/recipes')
+def recipes():
+    return render_template('recipes.html')
 
 
 # run application
