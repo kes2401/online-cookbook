@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect
 from flask_pymongo import PyMongo, pymongo
 
 app = Flask(__name__)
@@ -30,6 +30,17 @@ def recipes():
 def recipe():
     return render_template('recipe.html')
 
+@app.route('/add_recipe')
+def add_recipe():
+    cuisines = db.cuisines.find()
+    ingredients = db.ingredients.find()
+    return render_template('add_recipe.html', cuisines=cuisines, ingredients=ingredients)
+    
+@app.route('/insert_recipe', methods=['POST'])
+def insert_recipe():
+    # insert to database
+    
+    return redirect(url_for('recipes'))
 
 # run application
 if __name__ == '__main__':

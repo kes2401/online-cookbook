@@ -17,26 +17,24 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='assets/img/favicon.ico') }}">
 </head>
 <body>
-    <header>
-        <!-- Navbar -->
-        <nav class="teal darken-1">
-            <div class="nav-wrapper">
-                <a href="#!" class="brand-logo">The Open Cookbook</a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="\">Home</a></li>
-                    <li><a href="\recipes">Recipes</a></li>
-                    <li><a href="\login">Login</a></li>
-                </ul>
-            </div>
-        </nav>
-        <!-- Mobile sidebar -->
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="\">Home</a></li>
-            <li><a href="\recipes">Recipes</a></li>
-            <li><a href="\login">Login</a></li>
-        </ul>
-    </header>
+    <!-- Navbar -->
+    <nav class="teal darken-1">
+        <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">The Open Cookbook</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="\">Home</a></li>
+                <li><a href="\recipes">Recipes</a></li>
+                <li><a href="\login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Mobile sidebar -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="\">Home</a></li>
+        <li><a href="\recipes">Recipes</a></li>
+        <li><a href="\login">Login</a></li>
+    </ul>
     
     
     <!-- Main Content -->
@@ -78,6 +76,9 @@
     
     <!-- Materialize - Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <!-- Main JavaScript file -->
     <script src="static/js/script.js"></script>
 </body>
 </html>

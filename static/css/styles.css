@@ -51,6 +51,16 @@ body {
     font-size: 1.6rem;
 }
 
+.add-ingredient-btn,
+.remove-ingredient-btn,
+.add-step-btn,
+.remove-step-btn {
+    margin: 4px;
+}
+
+hr {
+    margin-bottom: 36px;
+}
 
 /* Utility classes*/
 .lrg-paragraph-txt {
@@ -61,15 +71,44 @@ body {
     font-size: 0.9rem;
 }
 
+.mt-0 {
+    margin-top: 0;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
 .mt-20 {
     margin-top: 20px;
 }
+
 .mt-40 {
     margin-top: 40px;
 }
 
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
 .p-10 {
     padding: 10px;
+}
+
+.height-40 {
+    height: 40px;
 }
 
 /* Media Queries */
