@@ -36,70 +36,16 @@
                 <div class="row">
                     <div class="allergens mb-20">
                         <h5 class="mb-10 center-align teal-text text-darken-4"><strong>Allergens</strong></h5>
+                        {% for allergen in allergens %}
                         <div class="input-field col s6 m3 mt-0 mb-0 height-40">
                             <p>
                               <label>
-                                <input type="checkbox" class="filled-in" name="Milk" id="Milk" />
-                                <span>Milk</span>
+                                <input type="checkbox" class="filled-in" name="{{ allergen.allergen_name }}"/>
+                                <span>{{ allergen.allergen_name }}</span>
                               </label>
                             </p>
                         </div>
-                        <div class="input-field col s6 m3 mt-0 mb-0 height-40">
-                            <p>
-                              <label>
-                                <input type="checkbox" class="filled-in" name="Eggs" id="Eggs" />
-                                <span>Eggs</span>
-                              </label>
-                            </p>
-                        </div>
-                        <div class="input-field col s6 m3 mt-0 mb-0 height-40">
-                            <p>
-                              <label>
-                                <input type="checkbox" class="filled-in" name="Peanuts" id="Peanuts" />
-                                <span>Peanuts</span>
-                              </label>
-                            </p>
-                        </div>
-                        <div class="input-field col s6 m3 mt-0 mb-0 height-40">
-                            <p>
-                              <label>
-                                <input type="checkbox" class="filled-in" name="Tree Nuts" id="Tree Nuts" />
-                                <span>Tree Nuts</span>
-                              </label>
-                            </p>
-                        </div>
-                        <div class="input-field col s6 m3 mt-0 mb-0 height-40">
-                            <p>
-                              <label>
-                                <input type="checkbox" class="filled-in" name="Fish" id="Fish" />
-                                <span>Fish</span>
-                              </label>
-                            </p>
-                        </div>
-                        <div class="input-field col s6 m3 mt-0 mb-0 height-40">
-                            <p>
-                              <label>
-                                <input type="checkbox" class="filled-in" name="Shellfish" id="Shellfish" />
-                                <span>Shellfish</span>
-                              </label>
-                            </p>
-                        </div>
-                        <div class="input-field col s6 m3 mt-0 mb-0 height-40">
-                            <p>
-                              <label>
-                                <input type="checkbox" class="filled-in" name="Soy" id="Soy" />
-                                <span>Soy</span>
-                              </label>
-                            </p>
-                        </div>
-                        <div class="input-field col s6 m3 mt-0 mb-0 height-40">
-                            <p>
-                              <label>
-                                <input type="checkbox" class="filled-in" name="Wheat" id="Wheat" />
-                                <span>Wheat</span>
-                              </label>
-                            </p>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
                 
