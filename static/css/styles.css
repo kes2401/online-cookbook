@@ -43,8 +43,11 @@ body {
 }
 
 #recipe-search {
-    /*box-sizing: border-box;*/
     padding: 14px;
+}
+
+.author-text {
+    font-size: 13px;
 }
 
 .fab {
