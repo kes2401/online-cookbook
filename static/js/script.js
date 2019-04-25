@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         selects = document.querySelectorAll('select');
         selectInstances = M.FormSelect.init(selects);
     })
+    // ----- TODO: fix bug where ingredientCounter will start at 2 even when there already may be more ingredients listed when editing a recipe
     
     // Add button functionality to remove last ingredient
     $('.remove-ingredient-btn').click(function() {
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $('#steps-list').append(htmlString);
         stepCount++;
     });
+    // ----- TODO: fix bug where stepCounter will start at 2 even when there already may be more steps listed in the method when editing a recipe
     
     // Add button functionality to remove last step in method
     $('.remove-step-btn').click(function() {

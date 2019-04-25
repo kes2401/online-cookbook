@@ -1,4 +1,5 @@
 import os
+from bson.objectid import ObjectId
 from flask import Flask, render_template, url_for, redirect, request
 from flask_pymongo import PyMongo, pymongo
 
@@ -12,6 +13,7 @@ app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 db = client.cookbook
 
+placeholder_image = 'http://placehold.jp/48/dedede/adadad/400x400.jpg?text=Image%20Not%20Available'
 
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
@@ -27,9 +29,10 @@ def recipelist():
     recipes = db.recipes.find()
     return render_template('recipelist.html', recipes=recipes)
     
-@app.route('/recipe')
-def recipe():
-    return render_template('recipe.html')
+@app.route('/recipe/<recipe_id>/')
+def recipe(recipe_id):
+    this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    return render_template('recipe.html', recipe=this_recipe)
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -37,6 +40,14 @@ def add_recipe():
     ingredients = db.ingredients.find()
     allergens = db.allergens.find()
     return render_template('add_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens)
+    
+@app.route('/edit_recipe/<recipe_id>/')
+def edit_recipe(recipe_id):
+    cuisines = db.cuisines.find()
+    ingredients = db.ingredients.find()
+    allergens = db.allergens.find()
+    this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    return render_template('edit_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens, recipe=this_recipe)
     
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
