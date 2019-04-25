@@ -49,6 +49,11 @@ def edit_recipe(recipe_id):
     this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
     return render_template('edit_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens, recipe=this_recipe)
     
+app.route("/update_recipe/<recipe_id>", methods=["POST"])
+def update_recipe(recipe_id):
+    print ('Recipe not actually updated - we need to update the database!!!')
+    return redirect(url_for('recipelist'))
+
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     
