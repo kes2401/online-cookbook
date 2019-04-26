@@ -65,8 +65,7 @@ def update_recipe(recipe_id):
 
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
-    print('CONNECT TO DATABASE TO DELETE RECIPE!!!')
-    print ('recipe_id was: ' + recipe_id)
+    db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     return redirect(url_for('recipelist'))    
 
 @app.route('/insert_recipe', methods=['POST'])
