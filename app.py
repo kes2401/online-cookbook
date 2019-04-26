@@ -51,9 +51,23 @@ def edit_recipe(recipe_id):
     
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
+    # db.recipes.update({'_id': ObjectId(recipe_id)},
+    #     {
+    #         'task_name': request.form.get('task_name'),
+    #         'category_name': request.form.get('category_name'),
+    #         'task_description': request.form.get('task_description'),
+    #         'due_date': request.form.get('due_date'),
+    #         'is_urgent': request.form.get('is_urgent'),
+    #     })
     print ('Recipe not actually updated - we need to update the database!!!')
     print ('recipe_id was: ' + recipe_id)
     return redirect(url_for('recipelist'))
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    print('CONNECT TO DATABASE TO DELETE RECIPE!!!')
+    print ('recipe_id was: ' + recipe_id)
+    return redirect(url_for('recipelist'))    
 
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
