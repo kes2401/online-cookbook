@@ -31,7 +31,7 @@
                         <label for="cuisine">Cuisine</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="image_url" type="text" name="image_url" autocomplete="false" value="{{ recipe.image_url }}">
+                        <input id="image_url" type="url" name="image_url" autocomplete="false" value="{{ recipe.image_url }}">
                         <label for="image_url">Image URL</label>
                     </div>
                 </div>
@@ -71,8 +71,7 @@
                                 <label for="quantity">Quantity</label>
                             </div>
                             <div class="input-field col s8">
-                                <select class="ingredient" name="ingredient-name-{{ loop.index }}" required>
-
+                                <select class="ingredient-list" name="ingredient-name-{{ loop.index }}" required>
                                     <option value="" disabled>Select Ingredient</option>
                                     {% for ingredient in ingredients %}
                                         {% if ingredient.ingredient_name == ing[1] %}

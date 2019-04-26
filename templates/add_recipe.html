@@ -61,7 +61,7 @@
                                 <label for="quantity">Quantity</label>
                             </div>
                             <div class="input-field col s8">
-                                <select class="ingredient" name="ingredient-name-1" required>
+                                <select class="ingredient-list" name="ingredient-name-1" required>
                                     <option value="" disabled selected>Select Ingredient</option>
                                     {% for ingredient in ingredients %}
                                     <option value="{{ ingredient.ingredient_name }}">{{ ingredient.ingredient_name }}</option>
