@@ -26,7 +26,7 @@ def signup():
 
 @app.route('/recipelist')
 def recipelist():
-    recipes = db.recipes.find()
+    recipes = list(db.recipes.find())
     return render_template('recipelist.html', recipes=recipes)
     
 @app.route('/recipe/<recipe_id>/')
@@ -36,22 +36,23 @@ def recipe(recipe_id):
 
 @app.route('/add_recipe')
 def add_recipe():
-    cuisines = db.cuisines.find()
-    ingredients = db.ingredients.find()
-    allergens = db.allergens.find()
+    cuisines = list(db.cuisines.find())
+    ingredients = list(db.ingredients.find())
+    allergens = list(db.allergens.find())
     return render_template('add_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens)
     
 @app.route('/edit_recipe/<recipe_id>/')
 def edit_recipe(recipe_id):
-    cuisines = db.cuisines.find()
-    ingredients = db.ingredients.find()
-    allergens = db.allergens.find()
+    cuisines = list(db.cuisines.find())
+    ingredients = list(db.ingredients.find())
+    allergens = list(db.allergens.find())
     this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
     return render_template('edit_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens, recipe=this_recipe)
     
-app.route("/update_recipe/<recipe_id>", methods=["POST"])
+@app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     print ('Recipe not actually updated - we need to update the database!!!')
+    print ('recipe_id was: ' + recipe_id)
     return redirect(url_for('recipelist'))
 
 @app.route('/insert_recipe', methods=['POST'])
