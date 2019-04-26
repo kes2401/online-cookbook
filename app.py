@@ -51,16 +51,48 @@ def edit_recipe(recipe_id):
     
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
-    # db.recipes.update({'_id': ObjectId(recipe_id)},
-    #     {
-    #         'task_name': request.form.get('task_name'),
-    #         'category_name': request.form.get('category_name'),
-    #         'task_description': request.form.get('task_description'),
-    #         'due_date': request.form.get('due_date'),
-    #         'is_urgent': request.form.get('is_urgent'),
-    #     })
-    print ('Recipe not actually updated - we need to update the database!!!')
-    print ('recipe_id was: ' + recipe_id)
+    
+    # orangise method steps from form and build new ordered array containing them
+    step_keys = []
+    method_steps = []
+    for stepkey in request.form.to_dict():
+        if 'step' in stepkey:
+            step_keys.append(stepkey)
+    for i in range(1, len(step_keys) + 1):
+        method_steps.append(request.form.get('step-' + str(i)))
+    
+    # organise ingredients from form and build new 2D containing qty-ingredient pairs
+    ingredients_arr = []
+    qty_arr = []
+    ing_arr = []
+    for ing_key in request.form.to_dict():
+        if 'ingredient-qty-' in ing_key:
+            qty_arr.append(ing_key)
+        if 'ingredient-name-' in ing_key:
+            ing_arr.append(ing_key)
+    for i in range(1, len(qty_arr) + 1):
+        qty = request.form.get('ingredient-qty-' + str(i))
+        ing = request.form.get('ingredient-name-' + str(i))
+        ingredients_arr.append([qty, ing])
+    
+    # find selected allergens and form new array containing them
+    allergens = db.allergens.find()
+    allergen_arr = []
+    for allergen in list(allergens):
+        for key in request.form.to_dict():
+            if key == allergen['allergen_name']:
+                allergen_arr.append(key)
+
+    # create new document that will be used as the update doct to update database
+    updated_recipe = {}
+    updated_recipe['recipe_name'] = request.form.get('recipe_name')
+    updated_recipe['ingredients'] = ingredients_arr
+    updated_recipe['method'] = method_steps
+    updated_recipe['allergens'] = allergen_arr
+    updated_recipe['cuisine'] = request.form.get('cuisine') # --- switch to cuisine database object ID ???
+    updated_recipe['image_url'] = request.form.get('image_url')
+    db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set': updated_recipe })
+    
     return redirect(url_for('recipelist'))
 
 @app.route('/delete_recipe/<recipe_id>')
