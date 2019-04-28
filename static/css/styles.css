@@ -75,6 +75,10 @@ hr {
     margin-bottom: 36px;
 }
 
+#cuisine-select {
+    margin-left: 20px;
+}
+
 /* Utility classes*/
 .lrg-paragraph-txt {
     font-size: 1.2rem;
@@ -114,6 +118,10 @@ hr {
 
 .mb-40 {
     margin-bottom: 40px;
+}
+
+.ml-10 {
+    margin-left: 10px;
 }
 
 .ml-20 {

@@ -27,7 +27,8 @@ def signup():
 @app.route('/recipelist')
 def recipelist():
     recipes = list(db.recipes.find())
-    return render_template('recipelist.html', recipes=recipes)
+    cuisines = list(db.cuisines.find())
+    return render_template('recipelist.html', recipes=recipes, cuisines=cuisines)
     
 @app.route('/recipe/<recipe_id>/')
 def recipe(recipe_id):
