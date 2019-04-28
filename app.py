@@ -32,7 +32,8 @@ def recipelist():
 @app.route('/recipe/<recipe_id>/')
 def recipe(recipe_id):
     this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    return render_template('recipe.html', recipe=this_recipe)
+    allergens = list(db.allergens.find())
+    return render_template('recipe.html', recipe=this_recipe, allergens=allergens)
 
 @app.route('/add_recipe')
 def add_recipe():

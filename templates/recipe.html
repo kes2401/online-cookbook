@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container col s12 m10 offset-m1 grey lighten-5 content-container mt-40" id="recipe-search">
+        <div class="row">
+            <div class="col s12 l6">
+                <header class="header-text center-align teal-text text-darken-4">
+                    <h1><strong>{{ recipe.recipe_name }}</strong></h1>
+                    <h5 class="teal-text text-darken-1"><em>{{ recipe.cuisine }}</em></h5>
+                    <p class="grey-text author-text">By: <span class="grey-text text-darken-3">{{ recipe.author }}</span></p>
+                    <div class="mt-20 mb-10">
+                        <div class="inline-block p-10">
+                            <i class="small material-icons grey-text">thumb_up</i>
+                            <span class="grey-text text-darken-3">{{ recipe.upvotes }}</span>
+                        </div>
+                        <div class="inline-block p-10">
+                            <i class="small material-icons grey-text">remove_red_eye</i>
+                            <span class="grey-text text-darken-3">{{ recipe.views }}</span>
+                        </div>   
+                    </div>
+                </header>
+            </div>
+            <div class="col s12 l6">
+                <div class="card mt-20">
+                    <div class="card-image">
+                        <img src="{{ recipe.image_url }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="ml-40 grey-text">
+                <p class="teal-text text-darken-3 mb-0 px-10"><em>Allergens</em></p>
+                <p class="grey-text text-lighten-2 text-bold mt-0">
+                    {% for allergen in allergens %}
+                        {% if allergen.allergen_name in recipe.allergens %}
+                            <span class="teal-text text-lighten-1 px-10">{{ allergen.allergen_name }}<i class="tiny material-icons">check</i></span>
+                        {% else %}
+                            <span class="px-10">{{ allergen.allergen_name }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </div>
+
+        </div>
+        <div class="row lrg-paragraph-txt teal-text text-darken-4">
+            <div class="col s12 m5 l4">
+                <h5 class="ml-20">Ingredients</h5>
+                <ul class="ml-20">
+                    {% for ingredient in recipe.ingredients %}
+                        <li>{{ ingredient[0] }} {{ ingredient[1] }}</li>        
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col s12 m7 l8">
+                <h5 class="ml-20">Method</h5>
+                <ol>
+                    {% for step in recipe.method %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        <a href="/recipelist" class="waves-effect waves-light btn darken-3 ml-20 mb-20 mt-40">Back to Recipes</a>
+    </div>
+
+{% endblock %}
