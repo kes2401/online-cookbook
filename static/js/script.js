@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         newIngredient.className = 'ingredient';
         let htmlString = 
             `<div class="input-field col s4">
-                <input id="quantity" name="ingredient-qty-${ingredientCount}" type="text" class="validate" required>
+                <input id="quantity" name="ingredient-qty-${ingredientCount}" type="text" class="validate" autocomplete="off" required>
                 <label for="quantity">Quantity</label>
             </div>
             <div class="input-field col s8">
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let stepCount = $('.step').length + 1;
     $('.add-step-btn').click(function() {
         let htmlString = `<li class="step">
-                            <input name="step-${stepCount}" type="text" class="validate" required>
+                            <input name="step-${stepCount}" type="text" class="validate" autocomplete="off" required>
                           </li>`;
         $('#steps-list').append(htmlString);
         stepCount++;
