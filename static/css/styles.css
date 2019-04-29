@@ -39,6 +39,11 @@ body {
 
 .submit-btn {
     display: block;
+    margin: 0 auto;
+}
+
+a.submit-btn {
+    width: 100px;
 }
 
 #recipe-search {
