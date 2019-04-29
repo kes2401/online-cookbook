@@ -33,6 +33,25 @@ body {
     padding: 30px;
 }
 
+.flashes {
+    width: 90%;
+    margin: 20px auto;
+    padding: 2px;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.error {
+    background-color: #ffdbdb;
+    border: 1px solid #c14747;
+}
+
+.success {
+    background-color: #dbffde;
+    border: 1px solid #21962a;
+}
+
 .content-container {
     border-radius: 8px;
 }
