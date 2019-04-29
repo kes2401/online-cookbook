@@ -10,7 +10,7 @@
                 <!-- Recipe name section -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="recipe_name" name="recipe_name" type="text" class="validate" autocomplete="false" value="{{ recipe.recipe_name }}" required>
+                        <input id="recipe_name" name="recipe_name" type="text" class="validate" autocomplete="off" value="{{ recipe.recipe_name }}" maxlength="24" autofocus required>
                         <label for="recipe_name">Recipe Name</label>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <label for="cuisine">Cuisine</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="image_url" type="url" name="image_url" autocomplete="false" value="{{ recipe.image_url }}">
+                        <input id="image_url" type="url" name="image_url" autocomplete="off" value="{{ recipe.image_url }}">
                         <label for="image_url">Image URL</label>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                         {% for ing in recipe.ingredients %}
                         <div class="ingredient">
                             <div class="input-field col s4">
-                                <input id="quantity" name="ingredient-qty-{{ loop.index }}" type="text" class="validate" value="{{ ing[0] }}" required>
+                                <input id="quantity" name="ingredient-qty-{{ loop.index }}" type="text" class="validate" value="{{ ing[0] }}" autocomplete="off" required>
                                 <label for="quantity">Quantity</label>
                             </div>
                             <div class="input-field col s8">
@@ -80,7 +80,7 @@
                                             <option value="{{ ingredient.ingredient_name }}">{{ ingredient.ingredient_name }}</option>
                                         {% endif %}
                                     {% endfor %}
-                                    
+
                                 </select>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                                 
                                 {% for step in recipe.method %}
                                 <li class="step">
-                                    <input name="step-{{ loop.index }}" type="text" class="validate" value="{{ step }}" required>
+                                    <input name="step-{{ loop.index }}" type="text" class="validate" value="{{ step }}" autocomplete="off" required>
                                 </li>
                                 {% endfor %}
                                 

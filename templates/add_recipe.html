@@ -10,7 +10,7 @@
                 <!-- Recipe name section -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="recipe_name" name="recipe_name" type="text" class="validate" autocomplete="false" required>
+                        <input id="recipe_name" name="recipe_name" type="text" class="validate" autocomplete="off" maxlength="24" autofocus required>
                         <label for="recipe_name">Recipe Name</label>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                         <label for="cuisine">Cuisine</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input id="image_url" type="url" name="image_url" autocomplete="false">
+                        <input id="image_url" type="url" name="image_url" autocomplete="off">
                         <label for="image_url">Image URL</label>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <h5 class="mb-20 center-align teal-text text-darken-4"><strong>Ingredients</strong></h5>
                         <div class="ingredient">
                             <div class="input-field col s4">
-                                <input id="quantity" name="ingredient-qty-1" type="text" class="validate" required>
+                                <input id="quantity" name="ingredient-qty-1" type="text" class="validate" autocomplete="off" required>
                                 <label for="quantity">Quantity</label>
                             </div>
                             <div class="input-field col s8">
@@ -93,7 +93,7 @@
                         <div class="input-field col s12 mt-0">
                             <ol id="steps-list" class="mt-10">
                                 <li class="step">
-                                    <input name="step-1" type="text" class="validate" required>
+                                    <input name="step-1" type="text" class="validate" autocomplete="off" required>
                                 </li>
                             </ol>
                         </div>
