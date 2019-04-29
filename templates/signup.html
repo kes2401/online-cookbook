@@ -11,25 +11,25 @@
             <form action="/recipelist" method="POST">
                 <div class="input-field col s12">
                     <i class="material-icons prefix teal-text text-darken-1">account_circle</i>
-                    <input id="username" type="text" class="validate" autocomplete="off" maxlength="16" pattern="^[a-zA-Z0-9]*$" autofocus>
+                    <input id="username" name="username" type="text" class="validate" autocomplete="off" maxlength="16" pattern="^[a-zA-Z0-9]*$" autofocus>
                     <label for="username">Username</label>
                     <span class="helper-text" data-error="There's something wrong here..." data-success="This looks ok!">Up to 16 alphanumeric characters allowed, no spaces</span>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix teal-text text-darken-1">email</i>
-                    <input id="email" type="email" class="validate" autocomplete="off">
+                    <input id="email" name="email" type="email" class="validate" autocomplete="off">
                     <label for="email">Email</label>
                     <span class="helper-text" data-error="There's something wrong here..." data-success="This looks ok!">Please enter a valid email address</span>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix teal-text text-darken-1">lock_open</i>
-                    <input id="password" type="password" class="validate" minlength="8" maxlength="16" pattern='^[a-zA-Z0-9!@#$&()\\-`.+,/\"]*$'>
+                    <input id="password" type="password" name="password" class="validate" minlength="8" maxlength="16" pattern='^[a-zA-Z0-9!@#$&()\\-`.+,/\"]*$'>
                     <label for="password">Password</label>
                     <span class="helper-text" data-error="There's something wrong here..." data-success="This looks ok!">Must be 8-16 characters long, of alphanumeric and special characters</span>
                 </div>
                 <div class="input-field col s12">
                     <i class="material-icons prefix teal-text text-darken-1">lock_outline</i>
-                    <input id="password-reconfirm" type="password" class="validate" minlength="8" maxlength="16" pattern='^[a-zA-Z0-9!@#$&()\\-`.+,/\"]*$'>
+                    <input id="password-reconfirm" name="password-reconfirm" type="password" class="validate" minlength="8" maxlength="16" pattern='^[a-zA-Z0-9!@#$&()\\-`.+,/\"]*$'>
                     <label for="password-reconfirm">Re-Confirm Password</label>
                     <span class="helper-text" data-error="There's something wrong here..." data-success="This looks ok!">Must be 8-16 characters long, of alphanumeric and special characters</span>
                 </div>
