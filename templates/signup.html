@@ -8,7 +8,16 @@
     <div class="container col s10 m6 offset-s1 offset-m3 grey lighten-5 content-container" id="login-form">
         <div class="row">
             <h4 class="center-align teal-text text-darken-4">Sign Up</h4>
-            <form action="/recipelist" method="POST">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="flashes {{ category }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form action="{{ url_for('signup') }}" method="POST">
                 <div class="input-field col s12">
                     <i class="material-icons prefix teal-text text-darken-1">account_circle</i>
                     <input id="username" name="username" type="text" class="validate" autocomplete="off" maxlength="16" pattern="^[a-zA-Z0-9]*$" autofocus>

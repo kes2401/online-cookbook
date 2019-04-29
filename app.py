@@ -1,9 +1,11 @@
 import os
 from bson.objectid import ObjectId
-from flask import Flask, render_template, url_for, redirect, request
+from flask import Flask, render_template, url_for, redirect, request, flash
 from flask_pymongo import PyMongo, pymongo
+from passlib.hash import pbkdf2_sha256
 
 app = Flask(__name__)
+app.secret_key = '12345'
 
 app.config["MONGO_DBNAME"] = "cookbook"
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
@@ -22,6 +24,36 @@ def home():
     
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if request.method == 'POST':
+        
+        # Retrieve users from database and check if requested username already exists
+        users_in_db = list(db.users.find())
+        if len(users_in_db) > 0:
+            for user in users_in_db:
+                if user['username'] == request.form.get('username'):
+                    flash('Username is already taken', 'error')
+                    return render_template('signup.html')
+        
+        # Begin creating new_user dict for possible insertion to database
+        new_user = {}
+        new_user['username'] = request.form.get('username')
+        new_user['email'] = request.form.get('email')
+        # TODO - (future feature) add functionality to see if email address was already used, & build password recovery feature as required
+        new_user['password'] = pbkdf2_sha256.hash(request.form.get('password'))
+        new_user['password_reconfirm'] = pbkdf2_sha256.verify(request.form.get('password-reconfirm'), new_user['password'])
+        
+        # if password entered is not properly re-confirmed
+        if not new_user['password_reconfirm']:
+            flash('Passwords did not match', 'error')
+            return render_template('signup.html')    
+        
+        # Once all required field are populated without error above, insert new user into database and redirect to login page
+        if new_user['username'] and new_user['email'] and new_user['password']:
+            new_user['recipes'] = []
+            db.users.insert_one(new_user)
+            flash('You have successfully signed up, you can now log in', 'success')
+            return redirect(url_for('home'))
+
     return render_template('signup.html')
 
 @app.route('/recipelist')
@@ -85,7 +117,7 @@ def update_recipe(recipe_id):
             if key == allergen['allergen_name']:
                 allergen_arr.append(key)
 
-    # create new document that will be used as the update doct to update database
+    # create new document that will be used as the update dict to update database
     updated_recipe = {}
     updated_recipe['recipe_name'] = request.form.get('recipe_name')
     updated_recipe['ingredients'] = ingredients_arr
