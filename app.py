@@ -40,9 +40,6 @@ def home():
             # once verified with user record in database, start a new session and redirect to main recipelist
             session['user'] = username_entered
             session['user_id'] = str(this_user_in_db['_id'])
-            print(session['user'])
-            print(session['user_id'])
-            
             flash('You have successfully logged in', 'success')
             return redirect(url_for('recipelist'))
         else:
@@ -51,6 +48,14 @@ def home():
             return render_template('login.html')
     
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    # remove the user and user_id from the session if it's there
+    session.pop('user', None)
+    session.pop('user_id', None)
+    flash('You have successfully logged out', 'success')
+    return redirect(url_for('login'))
     
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
