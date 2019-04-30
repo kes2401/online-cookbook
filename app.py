@@ -5,7 +5,7 @@ from flask_pymongo import PyMongo, pymongo
 from passlib.hash import pbkdf2_sha256
 
 app = Flask(__name__)
-app.secret_key = '12345'
+app.secret_key = os.urandom(24)
 
 app.config["MONGO_DBNAME"] = "cookbook"
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
