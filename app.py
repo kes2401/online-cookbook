@@ -1,6 +1,6 @@
 import os
 from bson.objectid import ObjectId
-from flask import Flask, render_template, url_for, redirect, request, flash
+from flask import Flask, render_template, url_for, redirect, request, flash, session
 from flask_pymongo import PyMongo, pymongo
 from passlib.hash import pbkdf2_sha256
 
@@ -20,6 +20,36 @@ placeholder_image = 'http://placehold.jp/48/dedede/adadad/400x400.jpg?text=Image
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        
+        # Retrieve users from database and check that username exists
+        username_entered = request.form.get('username')
+        this_user_in_db = db.users.find_one({'username': username_entered})
+        if not this_user_in_db:
+            flash('Username does not exist', 'error')
+            return render_template('login.html')
+        
+        # once username exists in database confirm password entered and that both fields are populated
+        password_entered = request.form.get('password')
+        if not username_entered or not password_entered:
+            flash('Please enter a valid username and password', 'error')
+            return render_template('login.html')
+        
+        # check password against this username's user record in database
+        if pbkdf2_sha256.verify(password_entered, this_user_in_db['password']):
+            # once verified with user record in database, start a new session and redirect to main recipelist
+            session['user'] = username_entered
+            session['user_id'] = str(this_user_in_db['_id'])
+            print(session['user'])
+            print(session['user_id'])
+            
+            flash('You have successfully logged in', 'success')
+            return redirect(url_for('recipelist'))
+        else:
+            # else if password does not match, flash error message
+            flash('The password did not match the user profile', 'error')
+            return render_template('login.html')
+    
     return render_template('login.html')
     
 @app.route('/signup', methods=['GET', 'POST'])
