@@ -9,6 +9,15 @@
     
     <div class="container col s12 m10 offset-m1 grey lighten-5 content-container" id="recipe-search">
         <div class="row">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="flashes {{ category }}">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
             <div class="col s7 m4">
                 <div class="input-field col s12">
                     <i class="material-icons prefix teal-text text-darken-1">search</i>

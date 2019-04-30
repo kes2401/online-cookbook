@@ -20,20 +20,26 @@
     <!-- Navbar -->
     <nav class="teal darken-1">
         <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">The Open Cookbook</a>
+            <a href="\" class="brand-logo">The Open Cookbook</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="\">Home</a></li>
                 <li><a href="\recipelist">Recipes</a></li>
-                <li><a href="\login">Login</a></li>
+                {% if 'user' in session %}
+                    <li><a href="\logout">Logout</a></li>
+                {% else %}
+                    <li><a href="\login">Login</a></li>
+                {% endif %}
             </ul>
         </div>
     </nav>
     <!-- Mobile sidebar -->
     <ul class="sidenav" id="mobile-demo">
-        <li><a href="\">Home</a></li>
         <li><a href="\recipelist">Recipes</a></li>
-        <li><a href="\login">Login</a></li>
+        {% if 'user' in session %}
+            <li><a href="\logout">Logout</a></li>
+        {% else %}
+            <li><a href="\login">Login</a></li>
+        {% endif %}
     </ul>
     
     
