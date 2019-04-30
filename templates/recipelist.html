@@ -52,9 +52,13 @@
                 <a class="waves-effect waves-light btn-small">A-Z</a>
                 <a class="waves-effect waves-light btn-small">Z-A</a>
             </div>
-            <div class="col s10 m4 l6 offset-s1 add-recipe-btn">
-                <a href="/add_recipe" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Recipe</a>
-            </div>
+            
+            {% if 'user' in session %}
+                <div class="col s10 m4 l6 offset-s1 add-recipe-btn">
+                    <a href="/add_recipe" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Recipe</a>
+                </div>
+            {% endif %}
+            
         </div>
     </div>
     
