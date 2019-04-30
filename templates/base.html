@@ -66,8 +66,13 @@
                 <div class="col l4 offset-l2 s12">
                     <h6 class="white-text">Links</h6>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="\">Home</a></li>
-                        <li><a class="grey-text text-lighten-3" href="\recipes">Recipes</a></li>
+                        {% if 'user' in session %}
+                            <li><a class="grey-text text-lighten-3" href="\recipes">Recipes</a></li>
+                            <li><a class="grey-text text-lighten-3" href="\logout">Logout</a></li>
+                        {% else %}
+                            <li><a class="grey-text text-lighten-3" href="\login">Login</a></li>
+                            <li><a class="grey-text text-lighten-3" href="\recipes">Recipes</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
