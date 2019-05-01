@@ -66,7 +66,7 @@
         <div class="row">
             
             {% for recipe in recipes %}
-            <div class="col s12 m6 l4">
+            <div class="col s12 m6 l6 xl4">
                 <div class="card">
                     <div class="card-image">
                         <img src="{{ recipe.image_url }}">
@@ -80,8 +80,8 @@
                     <div class="card-action">
                         <a href="/recipe/{{ recipe._id }}" class="waves-effect waves-light btn-small m-4">View</a>
                         {% if 'user' in session and session['user'] == recipe.author %}
-                            <a href="/edit_recipe/{{ recipe._id }}" class="waves-effect waves-light btn-small blue darken-2 m-4">Edit</a>
-                            <a href="/delete_recipe/{{ recipe._id }}" class="waves-effect waves-light btn-small red darken-2 m-4">Delete</a>
+                            <a href="/edit_recipe/{{ recipe._id }}" class="waves-effect waves-light btn-small blue darken-2 m-4"><i class="small material-icons">edit</i></a>
+                            <a href="/delete_recipe/{{ recipe._id }}" class="waves-effect waves-light btn-small red darken-2 m-4"><i class="small material-icons">delete</i></a>
                         {% endif %}
                     </div>
                 </div>

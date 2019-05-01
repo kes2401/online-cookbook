@@ -202,3 +202,11 @@ hr {
     }
     
 }
+
+@media screen and (min-width: 601px) and (max-width: 757px) {
+    
+    .btn, .btn-large, .btn-small, .btn-flat {
+        padding: 0 6px;
+    }
+    
+}
