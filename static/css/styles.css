@@ -118,6 +118,10 @@ hr {
     font-size: 0.9rem;
 }
 
+.m-4 {
+    margin: 4px;
+}
+
 .mt-0 {
     margin-top: 0;
 }
