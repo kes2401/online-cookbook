@@ -65,12 +65,6 @@ a.submit-btn {
     width: 100px;
 }
 
-a.back-to-recipes-btn {
-    display: block;
-    margin: 40px auto 20px;
-    width: 180px;
-}
-
 #recipe-search {
     padding: 14px;
 }
