@@ -167,6 +167,7 @@ def update_recipe(recipe_id):
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     db.recipes.delete_one({'_id': ObjectId(recipe_id)})
+    flash('Recipe successfully deleted', 'success')
     return redirect(url_for('recipelist'))    
 
 @app.route('/insert_recipe', methods=['POST'])
@@ -215,7 +216,7 @@ def insert_recipe():
     new_recipe['cuisine'] = request.form.get('cuisine') # --- switch to cuisine database object ID ???
     new_recipe['image_url'] = request.form.get('image_url')
     db.recipes.insert_one(new_recipe)
-    
+    flash('Recipe successfully created', 'success')
     return redirect(url_for('recipelist'))
 
 # run application

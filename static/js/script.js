@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let selects = document.querySelectorAll('select');
     let selectInstances = M.FormSelect.init(selects);
     
+    // Initialise modal for delete buttons
+    $('.modal').modal();
+    
     // gather ingredients from server page render
     let ingredients = [];
     for (let i = 1; i < selects[1].length; i++) {
@@ -67,4 +70,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     })
 });
-
