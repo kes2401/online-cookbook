@@ -211,7 +211,7 @@ def insert_recipe():
     new_recipe['allergens'] = allergen_arr
     new_recipe['views'] = 0
     new_recipe['upvotes'] = 0
-    new_recipe['author'] = 'my own Author ID'
+    new_recipe['author'] = session['user']
     new_recipe['cuisine'] = request.form.get('cuisine') # --- switch to cuisine database object ID ???
     new_recipe['image_url'] = request.form.get('image_url')
     db.recipes.insert_one(new_recipe)
