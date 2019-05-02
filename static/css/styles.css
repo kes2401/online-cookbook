@@ -103,6 +103,12 @@ hr {
     margin-left: 20px;
 }
 
+a.btn-floating.btn-large.add-recipe-btn {
+    position: fixed;
+    right: 5%;
+    top: 85%;
+}
+
 /* Utility classes*/
 .lrg-paragraph-txt {
     font-size: 1.2rem;

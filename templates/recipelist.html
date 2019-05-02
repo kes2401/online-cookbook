@@ -69,10 +69,6 @@
                 </strong>
                 <a href="{{ url_for('recipelist') }}" class="waves-effect waves-light btn-small ml-20">Reset</a>
             </div>
-            <!--{% if 'user' in session %}-->
-            <!--<a href="/add_recipe" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add Recipe</a>-->
-            <!--{% endif %}-->
-            
         </div>
     </div>
     
@@ -119,5 +115,9 @@
             
         </div>
     </div>
+    
+    {% if 'user' in session %}
+        <a href="{{ url_for('add_recipe') }}" class="btn-floating btn-large waves-effect waves-light z-depth-4 add-recipe-btn"><i class="material-icons">add</i></a>
+    {% endif %}
     
 {% endblock %}
