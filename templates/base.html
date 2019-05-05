@@ -24,7 +24,7 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="\recipelist">Recipes</a></li>
-                {% if 'user' in session %}
+                {% if user %}
                     <li><a href="\logout">Logout</a></li>
                 {% else %}
                     <li><a href="\signup">Sign Up</a></li>
@@ -36,7 +36,7 @@
     <!-- Mobile sidebar -->
     <ul class="sidenav" id="mobile-demo">
         <li><a href="\recipelist">Recipes</a></li>
-        {% if 'user' in session %}
+        {% if user%}
             <li><a href="\logout">Logout</a></li>
         {% else %}
             <li><a href="\signup">Sign Up</a></li>
@@ -68,7 +68,7 @@
                 <div class="col l4 offset-l2 s12">
                     <h6 class="white-text">Links</h6>
                     <ul>
-                        {% if 'user' in session %}
+                        {% if user %}
                             <li><a class="grey-text text-lighten-3" href="\recipelist">Recipes</a></li>
                             <li><a class="grey-text text-lighten-3" href="\logout">Logout</a></li>
                         {% else %}

@@ -1,6 +1,6 @@
 import os
 from bson.objectid import ObjectId
-from flask import Flask, render_template, url_for, redirect, request, flash, session
+from flask import Flask, render_template, url_for, redirect, request, flash, session, g
 from flask_pymongo import PyMongo, pymongo
 from passlib.hash import pbkdf2_sha256
 
@@ -17,6 +17,12 @@ db = client.cookbook
 
 placeholder_image = 'http://placehold.jp/48/dedede/adadad/400x400.jpg?text=Image%20Not%20Available'
 
+@app.before_request
+def before_request():
+    g.user = None
+    if 'user' in session:
+        g.user = session['user']
+        
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def home():
@@ -39,7 +45,6 @@ def home():
         if pbkdf2_sha256.verify(password_entered, this_user_in_db['password']):
             # once verified with user record in database, start a new session and redirect to main recipelist
             session['user'] = username_entered
-            session['user_id'] = str(this_user_in_db['_id'])
             flash('You have successfully logged in', 'success')
             return redirect(url_for('recipelist'))
         else:
@@ -53,7 +58,6 @@ def home():
 def logout():
     # remove the user and user_id from the session if it's there
     session.pop('user', None)
-    session.pop('user_id', None)
     flash('You have successfully logged out', 'success')
     return redirect(url_for('home'))
     
@@ -96,23 +100,21 @@ def recipelist():
     cuisines = list(db.cuisines.find())
     if request.method == 'POST':
         if 'cuisine-select' in request.form:
-            print(request.form)
             cuisine_selected = request.form.get('cuisine-select')
             recipes = list(db.recipes.find({'cuisine': cuisine_selected}))
         if 'recipe_search' in request.form:
-            print(request.form)
             search_text = request.form.get('recipe_search')
             recipes = list(db.recipes.find({'recipe_name': search_text}))
         return render_template('recipelist.html', recipes=recipes, cuisines=cuisines)
     
     recipes = list(db.recipes.find())
-    return render_template('recipelist.html', recipes=recipes, cuisines=cuisines)
+    return render_template('recipelist.html', recipes=recipes, cuisines=cuisines, user=g.user)
 
 @app.route('/recipe/<recipe_id>/')
 def recipe(recipe_id):
     this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
     allergens = list(db.allergens.find())
-    return render_template('recipe.html', recipe=this_recipe, allergens=allergens)
+    return render_template('recipe.html', recipe=this_recipe, allergens=allergens, user=g.user)
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -127,7 +129,7 @@ def edit_recipe(recipe_id):
     ingredients = list(db.ingredients.find().sort('ingredient_name', pymongo.ASCENDING))
     allergens = list(db.allergens.find())
     this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
-    return render_template('edit_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens, recipe=this_recipe)
+    return render_template('edit_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens, recipe=this_recipe, user=g.user)
     
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
