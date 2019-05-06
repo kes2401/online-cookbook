@@ -95,19 +95,30 @@ def signup():
 
     return render_template('signup.html')
 
-@app.route('/recipelist', methods=['GET','POST'])
+@app.route('/recipelist')
 def recipelist():
     cuisines = list(db.cuisines.find())
-    if request.method == 'POST':
-        if 'cuisine-select' in request.form:
-            cuisine_selected = request.form.get('cuisine-select')
-            recipes = list(db.recipes.find({'cuisine': cuisine_selected}))
-        if 'recipe_search' in request.form:
-            search_text = request.form.get('recipe_search')
-            recipes = list(db.recipes.find({'recipe_name': search_text}))
-        return render_template('recipelist.html', recipes=recipes, cuisines=cuisines)
-    
     recipes = list(db.recipes.find())
+    
+    for arg in request.args:
+        if 'recipe_search' in arg:
+            new_recipe_list = []
+            query = request.args['recipe_search']
+            for recipe in recipes:
+                if recipe['recipe_name'].lower().find(query.lower()) != -1:
+                    new_recipe_list.append(recipe)
+            return render_template('recipelist.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+        
+        elif 'cuisine_select' in arg:
+            new_recipe_list = []
+            query = request.args['cuisine_select']
+            for recipe in recipes:
+                if recipe['cuisine'] == query:
+                    new_recipe_list.append(recipe)
+            return render_template('recipelist.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+            
+        
+            
     return render_template('recipelist.html', recipes=recipes, cuisines=cuisines, user=g.user)
 
 @app.route('/recipe/<recipe_id>/')

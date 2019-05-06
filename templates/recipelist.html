@@ -18,7 +18,8 @@
                 {% endif %}
             {% endwith %}
             
-            <form action="{{ url_for('recipelist') }}" method="POST">
+            
+            <form>
                 <div class="col s7 m4">
                     <div class="input-field col s12">
                         <i class="material-icons prefix teal-text text-darken-1">search</i>
@@ -27,14 +28,14 @@
                     </div>
                 </div>
                 <div class="col s5 m2">
-                    <button class="btn waves-effect waves-light submit-btn mt-20" type="submit" name="action">Search</button>
+                    <button class="btn waves-effect waves-light submit-btn mt-20" type="submit" id="recipe-search-btn">Search</button>
                 </div>
             </form>
             
-            <form action="{{ url_for('recipelist') }}" method="POST">
+            <form>
                 <div class="col s7 m4">
                     <div class="input-field col s12" id="cuisine-select">
-                        <select id="cuisine-filter" name="cuisine-select">
+                        <select id="cuisine-filter" name="cuisine_select">
                             <option value="" disabled selected>Cuisine</option>
                             {% for cuisine in cuisines %}
                             <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
@@ -44,7 +45,7 @@
                     </div>
                 </div>
                 <div class="col s5 m2">
-                    <button class="btn waves-effect waves-light submit-btn mt-20" type="submit" name="action" id="cusine-filter-btn">Filter</button>
+                    <button class="btn waves-effect waves-light submit-btn mt-20" type="submit" id="cusine-filter-btn">Filter</button>
                 </div>
             </form>
             
