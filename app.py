@@ -116,9 +116,18 @@ def recipelist():
                 if recipe['cuisine'] == query:
                     new_recipe_list.append(recipe)
             return render_template('recipelist.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
-            
         
-            
+        elif 'sort' in arg:
+            if request.args['sort'] == 'votes':
+                new_recipe_list = list(db.recipes.find().sort('upvotes', pymongo.DESCENDING))
+                return render_template('recipelist.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+            elif request.args['sort'] == 'asc':
+                new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.ASCENDING))
+                return render_template('recipelist.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)   
+            elif request.args['sort'] == 'dsc':
+                new_recipe_list = list(db.recipes.find().sort('recipe_name', pymongo.DESCENDING))
+                return render_template('recipelist.html', recipes=new_recipe_list, cuisines=cuisines, user=g.user)
+                
     return render_template('recipelist.html', recipes=recipes, cuisines=cuisines, user=g.user)
 
 @app.route('/recipe/<recipe_id>/')
