@@ -1,4 +1,4 @@
-import os
+import os, requests
 from bson.objectid import ObjectId
 from flask import Flask, render_template, url_for, redirect, request, flash, session, g
 from flask_pymongo import PyMongo, pymongo
@@ -88,7 +88,7 @@ def signup():
         
         # Once all required field are populated without error above, insert new user into database and redirect to login page
         if new_user['username'] and new_user['email'] and new_user['password']:
-            new_user['recipes'] = []
+            new_user['liked_recipes'] = []
             db.users.insert_one(new_user)
             flash('You have successfully signed up, you can now log in', 'success')
             return redirect(url_for('home'))
@@ -192,7 +192,10 @@ def update_recipe(recipe_id):
     updated_recipe['method'] = method_steps
     updated_recipe['allergens'] = allergen_arr
     updated_recipe['cuisine'] = request.form.get('cuisine') # --- switch to cuisine database object ID ???
-    updated_recipe['image_url'] = request.form.get('image_url')
+    if request.form.get('image_url') == '':
+        updated_recipe['image_url'] = placeholder_image
+    else:
+        updated_recipe['image_url'] = request.form.get('image_url')
     db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set': updated_recipe })
     
     return redirect(url_for('recipelist'))
@@ -243,7 +246,7 @@ def insert_recipe():
     new_recipe['ingredients'] = ingredients_arr
     new_recipe['method'] = method_steps
     new_recipe['allergens'] = allergen_arr
-    new_recipe['views'] = 0
+    new_recipe['liked_by'] = []
     new_recipe['upvotes'] = 0
     new_recipe['author'] = session['user']
     new_recipe['cuisine'] = request.form.get('cuisine') # --- switch to cuisine database object ID ???
