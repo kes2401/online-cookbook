@@ -11,12 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialise modal for delete buttons
     $('.modal').modal();
     
-    // gather ingredients from server page render -FIX CONSOLE ERROR 
-    // let ingredients = [];
-    // for (let i = 1; i < selects[1].length; i++) {
-    //     ingredients.push(selects[1][i].innerHTML)
-    // }
-    
+    // Initialise tooltip for 'like' button
+    $('.tooltipped').tooltip();
+
     // Add button functionality to add additional ingredients
     let ingredientCount = $('.ingredient').length + 1;
     $('.add-ingredient-btn').click(function() {
@@ -102,11 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#likes-count').text(Number($('#likes-count').text()) - 1);
                 });
             }
-        } else {
-            // if no active user then show tooltip advising visitor to log in
-            $('.tooltipped').tooltip();
         }
-        
     });
-    
 });
