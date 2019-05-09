@@ -149,6 +149,7 @@ def add_like(recipe_id, user):
     if user not in liked_by:
         liked_by.append(user)
     this_recipe['liked_by'] = liked_by
+    this_recipe['upvotes'] = len(liked_by)
     db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set': this_recipe })
     
     # update liked_recipes list in user
@@ -172,6 +173,7 @@ def remove_like(recipe_id, user):
     if user in liked_by:
         liked_by.remove(user)
     this_recipe['liked_by'] = liked_by
+    this_recipe['upvotes'] = len(liked_by)
     db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set': this_recipe })
     
     # update liked_recipes list in user
