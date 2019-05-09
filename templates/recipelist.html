@@ -8,7 +8,7 @@
     </header>
     
     <div class="container col s12 m10 offset-m1 grey lighten-5 content-container" id="recipe-search">
-        <div class="row">
+        <div class="row mb-10">
             
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
@@ -50,18 +50,19 @@
             </form>
             
         </div>
-        <div class="row">
-            <div class="col s12 m8 l6">
+        <div class="row mb-10">
+            <div class="col s12 m6 center-align">
                 <form>
-                    <span class="teal-text text-darken-4">Sort All Recipes By: </span>
+                    <p class="teal-text text-darken-4">Sort All Recipes By: </p>
                     <button class="btn waves-effect waves-light btn-small" type="submit" name="sort" value="votes">Votes</button>
                     <button class="btn waves-effect waves-light btn-small" type="submit" name="sort" value="asc">A-Z</button>
                     <button class="btn waves-effect waves-light btn-small" type="submit" name="sort" value="dsc">Z-A</button>
                 </form>
             </div>
             
-            <div class="col s12 m4 l6 grey-text text-darken-2 left-align">
-                <strong>
+            <div class="col s12 m6 grey-text text-darken-2 center-align s-mt-20">
+                <a href="{{ url_for('recipelist') }}" class="waves-effect waves-light btn-small ml-20">Reset</a>
+                <p><strong>
                 {% if recipes|length <= 0 %}
                     0 Results found...
                 {% elif recipes|length == 1 %}
@@ -69,8 +70,7 @@
                 {% else %}
                     {{recipes|length}} Results found...
                 {% endif %}
-                </strong>
-                <a href="{{ url_for('recipelist') }}" class="waves-effect waves-light btn-small ml-20">Reset</a>
+                </strong></p>
             </div>
         </div>
     </div>
