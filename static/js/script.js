@@ -75,8 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // check first that there is an active user via the data-user HTML attribute
         if ($('#like-recipe-btn').data('user') !== 'None') {
-        
-        
+            
             let activeUser = $('#like-recipe-btn').data('user');
             let recipeId = $('#like-recipe-btn').data('recipe');
             
@@ -102,15 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#like-recipe-btn').removeClass('like-active');
                     $('#likes-count').text(Number($('#likes-count').text()) - 1);
                 });
-                
             }
-            
         } else {
-            
-            // if no active user then show modal or tooltip advising visitor to log in
-            // ...
-            alert('Please log in');
-            
+            // if no active user then show tooltip advising visitor to log in
+            $('.tooltipped').tooltip();
         }
         
     });

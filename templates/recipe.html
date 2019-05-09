@@ -11,7 +11,11 @@
                     <p class="grey-text author-text">By: <span class="grey-text text-darken-3">{{ recipe.author }}</span></p>
                     <div class="mt-20 mb-10">
                         <div class="inline-block p-10">
-                            <i class="small material-icons grey-text" data-user="{{user}}" data-recipe="{{recipe_id}}" id="like-recipe-btn">thumb_up</i>
+                            {% if user %}
+                                <i class="small material-icons grey-text" data-user="{{user}}" data-recipe="{{recipe_id}}" id="like-recipe-btn">thumb_up</i>
+                            {% else %}
+                                <i class="small material-icons grey-text tooltipped" data-user="None" data-recipe="{{recipe_id}}" data-position="top" data-tooltip="Please Log In to Like a recipe!" id="like-recipe-btn">thumb_up</i>
+                            {% endif %}
                             <span class="grey-text text-darken-3" id="likes-count">{{ recipe.liked_by|length }}</span>
                         </div>
                         <div class="inline-block p-10">

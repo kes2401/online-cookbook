@@ -1,4 +1,4 @@
-import os, requests
+import os
 from bson.objectid import ObjectId
 from flask import Flask, render_template, url_for, redirect, request, flash, session, g
 from flask_pymongo import PyMongo, pymongo
@@ -154,12 +154,10 @@ def add_like(recipe_id, user):
     
     # update liked_recipes list in user
     this_user = db.users.find_one({'username': user})
-    print(this_user)
     liked_recipes = list(this_user['liked_recipes'])
     if recipe_id not in liked_recipes:
         liked_recipes.append(recipe_id)
     this_user['liked_recipes'] = liked_recipes
-    print(this_user)
     db.users.update_one({'username': user}, {'$set': this_user })
     
     return "Recipe Liked by User"
@@ -178,12 +176,10 @@ def remove_like(recipe_id, user):
     
     # update liked_recipes list in user
     this_user = db.users.find_one({'username': user})
-    print(this_user)
     liked_recipes = list(this_user['liked_recipes'])
     if recipe_id in liked_recipes:
         liked_recipes.remove(recipe_id)
     this_user['liked_recipes'] = liked_recipes
-    print(this_user)
     db.users.update_one({'username': user}, {'$set': this_user })
     
     return "Recipe Un-Liked by User"
