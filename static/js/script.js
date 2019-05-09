@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialise modal for delete buttons
     $('.modal').modal();
     
-    // gather ingredients from server page render
-    let ingredients = [];
-    for (let i = 1; i < selects[1].length; i++) {
-        ingredients.push(selects[1][i].innerHTML)
-    }
+    // gather ingredients from server page render -FIX CONSOLE ERROR 
+    // let ingredients = [];
+    // for (let i = 1; i < selects[1].length; i++) {
+    //     ingredients.push(selects[1][i].innerHTML)
+    // }
     
     // Add button functionality to add additional ingredients
     let ingredientCount = $('.ingredient').length + 1;
@@ -69,4 +69,50 @@ document.addEventListener('DOMContentLoaded', function() {
             stepCount--;    
         }
     })
+    
+    // Add 'Like' functionality to like button on recipe page
+    $('#like-recipe-btn').on('click', function() {
+        
+        // check first that there is an active user via the data-user HTML attribute
+        if ($('#like-recipe-btn').data('user') !== 'None') {
+        
+        
+            let activeUser = $('#like-recipe-btn').data('user');
+            let recipeId = $('#like-recipe-btn').data('recipe');
+            
+            // check that receipe is not already liked
+            if (!$('#like-recipe-btn').hasClass('like-active')) {
+                
+                // make call to server to add user to liked_by list in recipe and also to liked_recipes list in user
+                $.post(`/add_like/${recipeId}/${activeUser}/`, function(data) {
+                    console.log(data);
+                    
+                    // once server call is successful, add class to colour the button like its active and increase likes count
+                    $('#like-recipe-btn').addClass('like-active');
+                    $('#likes-count').text(Number($('#likes-count').text()) + 1);
+                });
+                
+            } else {
+                
+                // if recipe is already liked make call to server to remove user from liked_by list in recipe and remove recipe from liked_recipes list in user
+                $.post(`/remove_like/${recipeId}/${activeUser}/`, function(data) {
+                    console.log(data);
+                    
+                    // once server call is successful, remove like-active class to discolour the button and decrease its likes count
+                    $('#like-recipe-btn').removeClass('like-active');
+                    $('#likes-count').text(Number($('#likes-count').text()) - 1);
+                });
+                
+            }
+            
+        } else {
+            
+            // if no active user then show modal or tooltip advising visitor to log in
+            // ...
+            alert('Please log in');
+            
+        }
+        
+    });
+    
 });

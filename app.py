@@ -22,6 +22,7 @@ def before_request():
     g.user = None
     if 'user' in session:
         g.user = session['user']
+        # g.user_id = session['user_id'] ----- NOT NEEDED ???
         
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
@@ -45,6 +46,7 @@ def home():
         if pbkdf2_sha256.verify(password_entered, this_user_in_db['password']):
             # once verified with user record in database, start a new session and redirect to main recipelist
             session['user'] = username_entered
+            # session['user_id'] = str(this_user_in_db['_id']) ----- NOT NEEDED ???
             flash('You have successfully logged in', 'success')
             return redirect(url_for('recipelist'))
         else:
@@ -58,6 +60,7 @@ def home():
 def logout():
     # remove the user and user_id from the session if it's there
     session.pop('user', None)
+    # session.pop('user_id', None) ---- NOT NEEDED ???
     flash('You have successfully logged out', 'success')
     return redirect(url_for('home'))
     
@@ -133,9 +136,56 @@ def recipelist():
 @app.route('/recipe/<recipe_id>/')
 def recipe(recipe_id):
     this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    recipe_id = str(this_recipe['_id'])
     allergens = list(db.allergens.find())
-    return render_template('recipe.html', recipe=this_recipe, allergens=allergens, user=g.user)
+    return render_template('recipe.html', recipe=this_recipe, allergens=allergens, user=g.user, recipe_id=recipe_id)
 
+@app.route('/add_like/<recipe_id>/<user>/', methods=['POST'])
+def add_like(recipe_id, user):
+    
+    # update liked_by list in recipe
+    this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    liked_by = list(this_recipe['liked_by'])
+    if user not in liked_by:
+        liked_by.append(user)
+    this_recipe['liked_by'] = liked_by
+    db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set': this_recipe })
+    
+    # update liked_recipes list in user
+    this_user = db.users.find_one({'username': user})
+    print(this_user)
+    liked_recipes = list(this_user['liked_recipes'])
+    if recipe_id not in liked_recipes:
+        liked_recipes.append(recipe_id)
+    this_user['liked_recipes'] = liked_recipes
+    print(this_user)
+    db.users.update_one({'username': user}, {'$set': this_user })
+    
+    return "Recipe Liked by User"
+
+@app.route('/remove_like/<recipe_id>/<user>/', methods=['POST'])
+def remove_like(recipe_id, user):
+    
+    # update liked_by list in recipe
+    this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
+    liked_by = list(this_recipe['liked_by'])
+    if user in liked_by:
+        liked_by.remove(user)
+    this_recipe['liked_by'] = liked_by
+    db.recipes.update_one({'_id': ObjectId(recipe_id)}, {'$set': this_recipe })
+    
+    # update liked_recipes list in user
+    this_user = db.users.find_one({'username': user})
+    print(this_user)
+    liked_recipes = list(this_user['liked_recipes'])
+    if recipe_id in liked_recipes:
+        liked_recipes.remove(recipe_id)
+    this_user['liked_recipes'] = liked_recipes
+    print(this_user)
+    db.users.update_one({'username': user}, {'$set': this_user })
+    
+    return "Recipe Un-Liked by User"
+    
 @app.route('/add_recipe')
 def add_recipe():
     cuisines = list(db.cuisines.find())
@@ -247,7 +297,6 @@ def insert_recipe():
     new_recipe['method'] = method_steps
     new_recipe['allergens'] = allergen_arr
     new_recipe['liked_by'] = []
-    new_recipe['upvotes'] = 0
     new_recipe['author'] = session['user']
     new_recipe['cuisine'] = request.form.get('cuisine') # --- switch to cuisine database object ID ???
     new_recipe['image_url'] = request.form.get('image_url')

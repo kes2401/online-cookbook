@@ -109,6 +109,14 @@ a.btn-floating.btn-large.add-recipe-btn {
     top: 85%;
 }
 
+#like-recipe-btn {
+    cursor: pointer;
+}
+
+.like-active {
+    color: #00897b !important;
+}
+
 /* Utility classes*/
 .lrg-paragraph-txt {
     font-size: 1.2rem;

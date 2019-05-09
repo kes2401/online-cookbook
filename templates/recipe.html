@@ -11,8 +11,8 @@
                     <p class="grey-text author-text">By: <span class="grey-text text-darken-3">{{ recipe.author }}</span></p>
                     <div class="mt-20 mb-10">
                         <div class="inline-block p-10">
-                            <i class="small material-icons grey-text">thumb_up</i>
-                            <span class="grey-text text-darken-3">{{ recipe.upvotes }}</span>
+                            <i class="small material-icons grey-text" data-user="{{user}}" data-recipe="{{recipe_id}}" id="like-recipe-btn">thumb_up</i>
+                            <span class="grey-text text-darken-3" id="likes-count">{{ recipe.upvotes }}</span>
                         </div>
                         <div class="inline-block p-10">
                             <i class="small material-icons grey-text">remove_red_eye</i>

@@ -90,7 +90,7 @@
                         <div class="card-content">
                             <h6>{{ recipe.recipe_name}}</h6>
                             <p class="grey-text">{{ recipe.cuisine }}</p>
-                            <p class="p-10"><i class="small material-icons teal-text text-lighten-2">thumb_up</i><label class="teal-text text-lighten-2"><strong>{{ recipe.upvotes }}</strong></label></p>
+                            <p class="p-10"><i class="small material-icons grey-text">thumb_up</i><label class="grey-text text-darken-2"><strong>{{ recipe.liked_by|length }}</strong></label></p>
                             <p class="grey-text author-text">By: <span class="grey-text text-darken-3">{{ recipe.author }}</span></p>
                         </div>
                         <div class="card-action">
