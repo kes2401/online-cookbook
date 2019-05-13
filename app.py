@@ -3,6 +3,7 @@ from bson.objectid import ObjectId
 from flask import Flask, render_template, url_for, redirect, request, flash, session, g
 from flask_pymongo import PyMongo, pymongo
 from passlib.hash import pbkdf2_sha256
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -17,12 +18,23 @@ db = client.cookbook
 
 placeholder_image = 'http://placehold.jp/48/dedede/adadad/400x400.jpg?text=Image%20Not%20Available'
 
+# Manage session user
 @app.before_request
 def before_request():
     g.user = None
     if 'user' in session:
         g.user = session['user']
         # g.user_id = session['user_id'] ----- NOT NEEDED ???
+
+# Check if user is logged in
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if g.user is None:
+            flash('Unauthorized, Please log in', 'error')
+            return redirect(url_for('home'))
+        return f(*args, **kwargs)
+    return decorated_function
         
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
@@ -57,6 +69,7 @@ def home():
     return render_template('login.html')
 
 @app.route('/logout')
+@login_required
 def logout():
     # remove the user and user_id from the session if it's there
     session.pop('user', None)
@@ -185,6 +198,7 @@ def remove_like(recipe_id, user):
     return "Recipe Un-Liked by User"
     
 @app.route('/add_recipe')
+@login_required
 def add_recipe():
     cuisines = list(db.cuisines.find())
     ingredients = list(db.ingredients.find().sort('ingredient_name', pymongo.ASCENDING))
@@ -192,6 +206,7 @@ def add_recipe():
     return render_template('add_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens)
     
 @app.route('/edit_recipe/<recipe_id>/')
+@login_required
 def edit_recipe(recipe_id):
     cuisines = list(db.cuisines.find())
     ingredients = list(db.ingredients.find().sort('ingredient_name', pymongo.ASCENDING))
@@ -249,6 +264,7 @@ def update_recipe(recipe_id):
     return redirect(url_for('recipelist'))
 
 @app.route('/delete_recipe/<recipe_id>')
+@login_required
 def delete_recipe(recipe_id):
     db.recipes.delete_one({'_id': ObjectId(recipe_id)})
     flash('Recipe successfully deleted', 'success')
