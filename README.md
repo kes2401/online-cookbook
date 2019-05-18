@@ -38,9 +38,9 @@ As a user I can:
 
 This site was built on the basis of ideas from initial wireframes created in Adobe XD and exported image file for this can be seen below. These image files as well as the XD project file can be found in the main project folder:
 
-![wireframe prototype 1](design/Android Mobile – 1@2x.png)
-![wireframe prototype 1](design/Android Mobile – 2@2x.png)
-![wireframe prototype 1](design/Android Mobile – 3@2x.png)
+![wireframe prototype 1](design/AndroidMobile–1@2x.png)
+![wireframe prototype 1](design/AndroidMobile–2@2x.png)
+![wireframe prototype 1](design/AndroidMobile–3@2x.png)
 
 
 ## Features
