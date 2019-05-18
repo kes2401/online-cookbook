@@ -58,7 +58,6 @@ The initial designs were based on the idea that a very basic login feature would
 - Feature 2 - A password reset feature would be a useful feature to be built that will allow a user to reset their password when they unfortunately forget the password they entered when they registered to use the application. 
 - Feature 3 - When browsing recipes on the site it could be useful to provide a feature where recipes could be filtered by the ingredients they contain. For example, a user may want to only see recipes containing Chicken. This feature could be added to the search/filter/sort menu options.
 
-
 ## Technologies Used
 
 Languages, frameworks, libraries, and any other tools used to construct this project. 
