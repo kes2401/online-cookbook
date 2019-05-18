@@ -117,6 +117,15 @@ a.btn-floating.btn-large.add-recipe-btn {
     color: #00897b !important;
 }
 
+hr {
+    border-color: #fff;
+    margin: 8px 2px;    
+}
+
+ol>li {
+    margin-bottom: 10px;
+}
+
 /* Utility classes*/
 .lrg-paragraph-txt {
     font-size: 1.2rem;
