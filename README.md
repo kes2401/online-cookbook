@@ -42,14 +42,21 @@ This site was built on the basis of ideas from initial wireframes created in Ado
 ![wireframe prototype 2](design/AndroidMobile–2@2x.png)
 ![wireframe prototype 3](design/AndroidMobile–3@2x.png)
 
-The initial designs were based on the idea that a very basic login feature would be used but as the project developed I decided to implement a slightly more sophisticated user registration and authorisation feature and the original designs were also improved upon as the front-end of the project was being built.
+The initial designs were based on the idea that a very basic login feature would be used but as the project developed I decided to implement a slightly more sophisticated user registration and authorisation feature and the original designs were also improved upon as the front-end of the project was being built. The improvements were made for the benefit of User Experience and to make the application more visually appealing as it was being styled throughout development.
 
 ## Features
  
 ##### Existing Features
-- Feature 1 - 
-- Feature 2 -  
-- Feature 3 - 
+- Feature 1 - The **User Registration and User Login** feature hashes user passwords so user's passwords are not stored in the application database as simple text strings as they are entered by the user when registering. This means that even by viewing the database documents you will not be able to see a user's password. The Registration form and Login forms use a lot of HTML validation including Regex pattern detection to ensure that usernames and password etc are all entered in the correct format. These forms also provide dynamic helper text to let a user know if there are any problems with anything they have entered in one of the fields, or if everything is ok. Usernames also have to be unique and the application will check through the database to ensure usernames aren't already taken before a new user can be registered.
+- Feature 2 - **User Authorisation** built within the application ensures that visitors to the site cannot access URL routes for adding, updating or deleting recipes and will be redirected to the Login page if any of these URLs are entered in the browser address bar. Also, once a user is logged in they will only be able to Edit/Update or Delete recipes only created by them alone. They will not be able to do the same to recipes created by other users. The option to log out of the site is available to users who are logged into an active session.
+- Feature 3 - The feature for **Adding Recipes** will be available for users who are logged in and is accessed by the 'Add' button in the bottom right-hand corner of the UI. This will take the user to a full page form that will allow them to submit detailed information about a new recipe as well as adding an image (a remotely hosted image, added by URL) dynamically adding and removing ingredients and steps in the recipe method. Again, this form provides helper text assistance to users to let them know if there are problems with entries in form fields or whether everything is ok.
+- Feature 4 - When **Browsing Recipes** in the application a user can search recipe names by entering a search string in the provided text field and this will then search for recipes whose name includes the query string. There is a drop-down menu of cuisine types so a user can filter the recipe list by recipes only matching the selected cuisins. In addition to that there are sorting buttons to sort all recipes in the application by ascending and descending alphabetical order, as well as by the most 'liked' recipes.
+- Feature 5 - The **Like** feature allows users who are logged in to 'Like' any recipe. This is counted as a upvote for the recipe and allows all recipes in the application to be sorted on a 'most liked' basis. If the user has 'liked' a recipe by mistake or just decides to remove their upvote they can click the 'like' button again to remove their vote.
+
+##### Future Features
+- Feature 1 - A User Dashboard is an idea that I have to allow users who are logged in to the application to simply visit their dashboard where it will simply provide a list of all recipes they have created on the site, a list of other users' recipes on the site which they have 'liked' and perhaps maybe further additional sub-features where they can view some statistics about the application in terms or recipes across the who application or just their activity, edit their own user details or change their password, etc. 
+- Feature 2 - A password reset feature would be a useful feature to be built that will allow a user to reset their password when they unfortunately forget the password they entered when they registered to use the application. 
+- Feature 3 - When browsing recipes on the site it could be useful to provide a feature where recipes could be filtered by the ingredients they contain. For example, a user may want to only see recipes containing Chicken. This feature could be added to the search/filter/sort menu options.
 
 
 ## Technologies Used
@@ -72,7 +79,8 @@ Languages, frameworks, libraries, and any other tools used to construct this pro
     - This project uses **Flask** as the back-end framework to simplify configuration of the application and routing, to render HTML templates, work with client requests  and to assist with user session management.
 - [Flask-PyMongo](https://flask-pymongo.readthedocs.io/en/latest/)
     - This project uses **Flask-PyMongo** to connect the application to MongoDB and for retrieving, inserting, updating and deleting data to and from the database.
-
+- [MongoDB](https://www.mongodb.com/)
+    - This project uses **MongoDB**, and more specifically MongoDB Atlas, as it's database system used to store data about users and recipes.
 
 ## Testing
 
