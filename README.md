@@ -6,7 +6,7 @@ This application uses Python on the back-end with the Flask web framework, and u
 
 Built for Milestone Project no.4 in the Full Stack Software Development bootcamp at Code Institute, in the Data Centric Development module.
 
-The live project can be viewed [here](https://www.heroku.com/).
+The live project can be viewed [here](http://the-open-cookbook.herokuapp.com/).
 
 
 ## UX
