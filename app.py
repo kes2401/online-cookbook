@@ -113,7 +113,7 @@ def signup():
 
 @app.route('/recipelist')
 def recipelist():
-    cuisines = list(db.cuisines.find())
+    cuisines = list(db.cuisines.find().sort('cuisine_name', pymongo.ASCENDING))
     recipes = list(db.recipes.find())
     
     for arg in request.args:
@@ -200,7 +200,7 @@ def remove_like(recipe_id, user):
 @app.route('/add_recipe')
 @login_required
 def add_recipe():
-    cuisines = list(db.cuisines.find())
+    cuisines = list(db.cuisines.find().sort('cuisine_name', pymongo.ASCENDING))
     ingredients = list(db.ingredients.find().sort('ingredient_name', pymongo.ASCENDING))
     allergens = list(db.allergens.find())
     return render_template('add_recipe.html', cuisines=cuisines, ingredients=ingredients, allergens=allergens, user=g.user)
@@ -208,7 +208,7 @@ def add_recipe():
 @app.route('/edit_recipe/<recipe_id>/')
 @login_required
 def edit_recipe(recipe_id):
-    cuisines = list(db.cuisines.find())
+    cuisines = list(db.cuisines.find().sort('cuisine_name', pymongo.ASCENDING))
     ingredients = list(db.ingredients.find().sort('ingredient_name', pymongo.ASCENDING))
     allergens = list(db.allergens.find())
     this_recipe = db.recipes.find_one({'_id': ObjectId(recipe_id)})
