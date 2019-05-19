@@ -126,6 +126,10 @@ ol>li {
     margin-bottom: 10px;
 }
 
+.pagination li.active {
+    background-color: #00897b !important;
+}
+
 /* Utility classes*/
 .lrg-paragraph-txt {
     font-size: 1.2rem;

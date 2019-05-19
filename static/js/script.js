@@ -113,4 +113,83 @@ $(document).ready(function(){
             }
         }
     });
+    
+    
+    // --- Pagination Feature ---
+    
+    let numberOfRecipes = $('.recipe-card').length;
+    const pageLimit= 6;
+    let totalPages = Math.ceil(numberOfRecipes / pageLimit);
+
+    $(`.recipe-card:gt(${pageLimit - 1})`).hide();
+
+    // configure pagination button links
+    $('.pagination').append('<li class="page-number active"><a href="javascript:void(0)">1</a></li>');
+    for (let i = 2; i <= totalPages; i++) {
+        $('.pagination').append(`<li class="page-number"><a href="javascript:void(0)">${i}</a></li>`);
+    }
+    $('.pagination').append('<li id="next-page" class="waves-effect"><a href="javascript:void(0)" aria-label="Next"><i class="material-icons">chevron_right</i></a></li>');
+    
+    // build functionality
+    $('.page-number').on('click', function() {
+        let currentPage = $(this).index();
+        
+        if (!$(this).hasClass('active')) {
+            $('.pagination li').removeClass('active');
+            $(this).addClass('active');
+            
+            $('.recipe-card').hide();
+            
+            let grandTotal = pageLimit * currentPage;
+            for (let i = grandTotal - pageLimit; i <  grandTotal; i++) {
+                $(`.recipe-card:eq(${i})`).show();
+            }
+        }
+    });
+    
+    $('#next-page').on('click', function() {
+        let currentPage = $('.pagination li.active').index();
+        if (currentPage != totalPages) {
+            currentPage++;
+            $('.pagination li').removeClass('active');
+            $('.recipe-card').hide();
+            let grandTotal = pageLimit * currentPage;
+            
+            for (let i = grandTotal - pageLimit; i <  grandTotal; i++) {
+                $(`.recipe-card:eq(${i})`).show();
+            }
+            
+            $(`.page-number:eq(${currentPage - 1})`).addClass('active');
+            
+            if ($('.pagination li.active').index() === totalPages) {
+                $('#next-page').addClass('disabled');
+            }
+            if ($('.pagination li.active').index() > 1) {
+                $('#prev-page').removeClass('disabled');
+            }
+        }
+    });
+    
+    $('#prev-page').on('click', function() {
+        let currentPage = $('.pagination li.active').index();
+        if (currentPage != 1) {
+            currentPage--;
+            $('.pagination li').removeClass('active');
+            $('.recipe-card').hide();
+            let grandTotal = pageLimit * currentPage;
+            for (let i = grandTotal - pageLimit; i <  grandTotal; i++) {
+                $(`.recipe-card:eq(${i})`).show();
+            }
+            $(`.page-number:eq(${currentPage - 1})`).addClass('active');
+            
+            
+            if ($('.pagination li.active').index() < totalPages) {
+                $('#next-page').removeClass('disabled');
+            }
+            if ($('.pagination li.active').index() === 1) {
+                $('#prev-page').addClass('disabled');
+            }
+        }
+    });
+    
 });

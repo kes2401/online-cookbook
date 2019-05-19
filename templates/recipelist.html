@@ -82,7 +82,7 @@
                 <p class="grey-text text-darken-4 center-align"><strong>There are no recipes matching this criteria</strong></p>
             {% else %}
                 {% for recipe in recipes %}
-                <div class="col s12 m6 l6 xl4">
+                <div class="col s12 m6 l6 xl4 recipe-card">
                     <div class="card">
                         <div class="card-image">
                             <img src="{{ recipe.image_url }}">
@@ -115,8 +115,16 @@
                 </div>
                 {% endfor %}
             {% endif %}
-            
         </div>
+        
+        {% if recipes|length > 6 %}
+            <div class="center-align">
+                <ul class="pagination">
+                    <li id="prev-page" class="disabled"><a href="javascript:void(0)" aria-label="Previous"><i class="material-icons">chevron_left</i></a></li>
+                </ul>
+            </div>
+        {% endif %}
+        
     </div>
     
     {% if user %}
