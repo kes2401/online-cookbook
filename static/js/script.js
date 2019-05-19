@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function(){
     
     // Initialise the mobile sidenav
     let sidenav = document.querySelectorAll('.sidenav');
@@ -9,11 +9,23 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectInstances = M.FormSelect.init(selects);
     
     // Initialise modal for delete buttons
-    $('.modal').modal();
+    if ($('.modal')) {
+        $('.modal').modal();
+    }
     
     // Initialise tooltip for 'like' button
-    $('.tooltipped').tooltip();
-
+    if ($('.tooltipped')) {
+        $('.tooltipped').tooltip();
+    }
+    
+    // gather ingredients from server page render
+    let ingredients = [];
+    if (document.URL.includes('add_recipe') || document.URL.includes('edit_recipe')) {
+        for (let i = 1; i < selects[1].length; i++) {
+            ingredients.push(selects[1][i].innerHTML)
+        }
+    }
+    
     // Add button functionality to add additional ingredients
     let ingredientCount = $('.ingredient').length + 1;
     $('.add-ingredient-btn').click(function() {
