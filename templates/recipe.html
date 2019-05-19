@@ -51,9 +51,10 @@
         <div class="row lrg-paragraph-txt teal-text text-darken-4">
             <div class="col s12 m5 l4">
                 <h5 class="ml-20">Ingredients</h5>
-                <ul class="ml-20">
+                <ul class="ml-20 striped">
                     {% for ingredient in recipe.ingredients %}
-                        <li>{{ ingredient[0] }} {{ ingredient[1] }}</li>        
+                        <li>{{ ingredient[0] }} {{ ingredient[1] }}</li>
+                        <hr>
                     {% endfor %}
                 </ul>
             </div>
