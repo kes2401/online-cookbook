@@ -92,6 +92,8 @@ GitHub was used for version control throught the development of the application 
 
 This project was then deployed to Heroku to host the live application.
 
+...*deployment steps*
+
 The live project can be viewed [here](https://www.heroku.com/).
 
 
@@ -99,6 +101,6 @@ The live project can be viewed [here](https://www.heroku.com/).
 
 ##### Acknowledgements
 
-- ...
-- 
-- 
+- The Authorisation function used on routes requiring user log in was based on code from a Flask Snippet written by Alex Abbott which can be found [here](http://flask.pocoo.org/snippets/98/)
+- The pagination feature used on the recipe list in this application was based on a coding tutorial by David Acosta which can be found [here](https://www.youtube.com/watch?v=Xznn-ggD0GU) on YouTube
+- All initial recipes (of which there are ten), including their images, were recipes taken from the BBC GoodFood website which can be found [here](https://www.bbcgoodfood.com/recipes)
