@@ -90,11 +90,18 @@ Languages, frameworks, libraries, and any other tools used to construct this pro
 
 GitHub was used for version control throught the development of the application and to host the code by pushing all code to the repo on GitHub.
 
-This project was then deployed to Heroku to host the live application.
+This project was then deployed to Heroku to host the live application, following the steps below:
 
-...*deployment steps*
+1. Log in to [Heroku](https://www.heroku.com/) and create a new app called 'the-open-cookbook'
+2. Log in to Heroku in the CLI
+3. Add the remote Heroku repo
+4. Create the requirements.txt file by running `pip3 freeze --local > requirements.txt` in the CLI
+5. Create a Procfile by running `echo web: python run.py > Procfile` in the CLI
+6. Start a web process on Heroku by running `heroku ps:scale web=1` in the CLI
+7. Set environment variables in Heroku for IP, PORT and MONGO_URI
+8. Restart all dynos on Heroku
 
-The live project can be viewed [here](https://www.heroku.com/).
+The live project can be viewed [here](http://the-open-cookbook.herokuapp.com/).
 
 
 ## Credits
