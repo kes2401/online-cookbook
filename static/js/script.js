@@ -144,6 +144,18 @@ $(document).ready(function(){
             for (let i = grandTotal - pageLimit; i <  grandTotal; i++) {
                 $(`.recipe-card:eq(${i})`).show();
             }
+            
+            if (currentPage > 1 && $('#prev-page').hasClass('disabled')) {
+                $('#prev-page').removeClass('disabled');
+            } else if (currentPage === 1 && !$('#prev-page').hasClass('disabled')) {
+                $('#prev-page').addClass('disabled');
+            }
+            
+            if (currentPage < totalPages && $('#next-page').hasClass('disabled')) {
+                $('#next-page').removeClass('disabled');
+            } else if (currentPage === totalPages && !$('#next-page').hasClass('disabled')) {
+                $('#next-page').addClass('disabled');
+            }
         }
     });
     
