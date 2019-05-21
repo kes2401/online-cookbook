@@ -83,6 +83,32 @@ Languages, frameworks, libraries, and any other tools used to construct this pro
 
 ## Testing
 
+This project was developed incrementally with continuous use of `console.log` statement in JavaScript and the `print()` function in Python to repeatedly check the changes made in the application and to ensure all changes to source code were providing the desired outcome in the browser. The site was build using Google Chrome browser (version 74) and then later tested in other browsers; FireFox (version 66) and Edge (version 42).
+
+This project was tested for responsiveness using the Chrome Developer Tools mobile device simulator. It was also viewed on physical Samsung Galaxy A5 (2017) mobile device to ensure good responsive behaviour. The site was also tested in Mozilla Firefox (version 66) and Microsoft Edge (version 42) browsers to ensure appearance and functionality of the site was as expected across all 3 of these browsers.
+
+All of the following routes were checked using the W3C Validation Tool [here](http://validator.w3.org), and both HTML and CSS files passed without error:
+- http://online-cookbook-kes2401.c9users.io/
+- http://online-cookbook-kes2401.c9users.io/login
+- http://online-cookbook-kes2401.c9users.io/add_recipe
+- http://online-cookbook-kes2401.c9users.io/edit_recipe/{recipe_id}/
+- http://online-cookbook-kes2401.c9users.io/recipe/{recipe_id}/
+- http://online-cookbook-kes2401.c9users.io/signup
+
+There are a number of forms used on this application to accept user input including the login form, signup form, search and filter forms on the recipe list page and on the add and edit recipe pages. Various forms and levels of HTML validation has been used on form inputs to verify inputs to each form field. These forms were tested while being developed to ensure that the validation was having the desired effect and providing the desired outcome.
+
+The site was also audited with Chrome Dev Tools' Lighthouse, with no throttling, and the results were good and were as follows on the audit report:
+
+| Performance | Accessibility | Best Practices | SEO |
+| :---------: | :------------:|:--------------:|:---:|
+| 100         | 78            | 64             | 75  |
+
+(_Progressive Web App audit scoring has been removed as the site was not intended to operate as a PWA_.)
+
+While the Best Practices score was not as high as I would have liked it to be the main issue with the score relates to the application not being served by HTTPS. The application is hosted on Heroku and I understand SSL certificates are only provided for on paid dynos, whereas this application is currently being hosted on a free dyno.
+
+
+
 ...
 
 
