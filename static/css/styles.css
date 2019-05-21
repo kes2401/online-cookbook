@@ -117,17 +117,18 @@ a.btn-floating.btn-large.add-recipe-btn {
     color: #00897b !important;
 }
 
-hr {
-    border-color: #fff;
-    margin: 8px 2px;    
-}
-
 ol>li {
     margin-bottom: 10px;
 }
 
 .pagination li.active {
     background-color: #00897b !important;
+}
+
+.ingredients-list li {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 /* Utility classes*/

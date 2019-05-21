@@ -28,7 +28,7 @@
             <div class="col s12 l6">
                 <div class="card mt-20">
                     <div class="card-image">
-                        <img src="{{ recipe.image_url }}">
+                        <img src="{{ recipe.image_url }}" alt="{{ recipe.recipe_name }}">
                     </div>
                 </div>
             </div>
@@ -51,10 +51,9 @@
         <div class="row lrg-paragraph-txt teal-text text-darken-4">
             <div class="col s12 m5 l4">
                 <h5 class="ml-20">Ingredients</h5>
-                <ul class="ml-20 striped">
+                <ul class="ml-20 striped ingredients-list">
                     {% for ingredient in recipe.ingredients %}
                         <li>{{ ingredient[0] }} {{ ingredient[1] }}</li>
-                        <hr>
                     {% endfor %}
                 </ul>
             </div>
@@ -68,7 +67,7 @@
             </div>
         </div>
         <div class="center-align mb-20 mt-40">
-            <a href="/recipelist" class="waves-effect waves-light btn-small darken-3">Back</a>
+            <a href="{{ url_for('recipelist') }}" class="waves-effect waves-light btn-small darken-3">Back</a>
             {% if user == recipe.author %}
                 <a href="/edit_recipe/{{ recipe._id }}" class="waves-effect waves-light btn-small blue darken-2">Edit</a>
                 <a href="#warning" data-target="warning" class="waves-effect waves-light btn-small red darken-2 modal-trigger">Delete</a>
