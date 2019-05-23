@@ -38,9 +38,9 @@ As a user I can:
 
 This site was built on the basis of ideas from initial wireframes created in Adobe XD and exported image files for these can be seen below. These image files as well as the XD project file can be found in the main project folder:
 
-![wireframe prototype 1](design/AndroidMobile–1@2x.png)
-![wireframe prototype 2](design/AndroidMobile–2@2x.png)
-![wireframe prototype 3](design/AndroidMobile–3@2x.png)
+![wireframe prototype 1](design/androidmobile1.png)
+![wireframe prototype 2](design/androidmobile2.png)
+![wireframe prototype 3](design/androidmobile3.png)
 
 The initial designs were based on the idea that a very basic login feature would be used but as the project developed I decided to implement a slightly more sophisticated user registration and authorisation feature and the original designs were also improved upon as the front-end of the project was being built. The improvements were made for the benefit of User Experience and to make the application more visually appealing as it was being styled throughout development.
 
