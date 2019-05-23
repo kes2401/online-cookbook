@@ -11,8 +11,6 @@ app.secret_key = os.urandom(24)
 app.config["MONGO_DBNAME"] = "cookbook"
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost')
 
-# mongo = PyMongo(app) ----REMOVE???
-
 client = pymongo.MongoClient(os.getenv('MONGO_URI'))
 db = client.cookbook
 
@@ -24,7 +22,6 @@ def before_request():
     g.user = None
     if 'user' in session:
         g.user = session['user']
-        # g.user_id = session['user_id'] ----- NOT NEEDED ???
 
 # Check if user is logged in
 def login_required(f):
@@ -58,7 +55,6 @@ def home():
         if pbkdf2_sha256.verify(password_entered, this_user_in_db['password']):
             # once verified with user record in database, start a new session and redirect to main recipelist
             session['user'] = username_entered
-            # session['user_id'] = str(this_user_in_db['_id']) ----- NOT NEEDED ???
             flash('You have successfully logged in', 'success')
             return redirect(url_for('recipelist'))
         else:
@@ -73,7 +69,6 @@ def home():
 def logout():
     # remove the user and user_id from the session if it's there
     session.pop('user', None)
-    # session.pop('user_id', None) ---- NOT NEEDED ???
     flash('You have successfully logged out', 'success')
     return redirect(url_for('home'))
     
@@ -93,7 +88,6 @@ def signup():
         new_user = {}
         new_user['username'] = request.form.get('username')
         new_user['email'] = request.form.get('email')
-        # TODO - (future feature) add functionality to see if email address was already used, & build password recovery feature as required
         new_user['password'] = pbkdf2_sha256.hash(request.form.get('password'))
         new_user['password_reconfirm'] = pbkdf2_sha256.verify(request.form.get('password-reconfirm'), new_user['password'])
         
