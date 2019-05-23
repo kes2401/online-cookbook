@@ -62,6 +62,9 @@ def home():
             flash('The password did not match the user profile', 'error')
             return render_template('login.html')
     
+    if g.user:
+        return redirect(url_for('recipelist'))
+        
     return render_template('login.html')
 
 @app.route('/logout')
