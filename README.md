@@ -110,8 +110,6 @@ While the Best Practices score was not as high as I would have liked it to be th
 All the JavaScript code written in this application does not explicitly return any values as such and for the most part simply completes operations for manipulating the DOM or providing UI effect and features. This is primarily done using functions provided by the jQuery library as well as some functions provided with the Materialize framework, and on that basis I have not written unit tests to test any functions in the application as they are predominantly provided by external libraries which I trust have already been thoroughly tested by the developers and maintainers of those libraries.
 
 
-...
-
 
 ## Deployment
 
